@@ -13,11 +13,11 @@ import java.util.Optional;
 public class EventService {
     private final EventRepository eventRepository;
 
-    public Event getEventDetail(String id) {
+    public void getEventDetail(String id) {
         Event eventId = eventRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Event not found with id: " + id)
+                () -> new RuntimeException("Event not found with id: " + id)
         );
-        return eventId;
+        return;
     }
 
 }
