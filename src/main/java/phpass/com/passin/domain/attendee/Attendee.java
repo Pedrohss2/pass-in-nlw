@@ -24,11 +24,9 @@ public class Attendee {
     private String name;
     @Column(nullable = false)
     private String email;
-    @Column(nullable = false, name = "event_id")
-    private String eventId;
     @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
-    private Event event;
+    private Event eventId;
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
