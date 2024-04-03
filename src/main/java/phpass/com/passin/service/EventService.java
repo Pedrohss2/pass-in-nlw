@@ -20,15 +20,15 @@ import java.util.List;
 public class EventService {
 
     private final EventRepository eventRepository;
-    private final AttendeeRepository attendeeRepository;
+    private final AttendeeService attendeeService;
 
     @Transactional(readOnly = true)
-    public EventResponseDTO getEventDetails(String id) {
-        Event eventId = this.eventRepository.findById(id).orElseThrow(
-                () -> new EventNotFoundException("Event not found with id: " + id)
+    public EventResponseDTO getEventDetails(String eventId) {
+        Event event = this.eventRepository.findById(eventId).orElseThrow(
+                () -> new EventNotFoundException("Event not found with id: " + eventId)
         );
-        List<Attendee> attendees = this.attendeeRepository.findByEventId(eventId);
-        return new EventResponseDTO(eventId, attendees.size());
+        List<Attendee> attendees = this.attendeeService.getAllAttendeesFromEvent(eventId);
+        return new EventResponseDTO(event, attendees.size());
     }
 
     public EventIdDTO createEvent(EventRequestDTO requestDTO) {
@@ -38,7 +38,7 @@ public class EventService {
         event.setMaximumAttendees(requestDTO.maximumAttendees());
         event.setSlug(createSlug(requestDTO.title()));
 
-        this.eventRepository.save(event);
+        eventRepository.save(event);
 
         return new EventIdDTO(event.getId());
     }

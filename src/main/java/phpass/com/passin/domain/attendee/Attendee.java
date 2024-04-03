@@ -26,7 +26,7 @@ public class Attendee {
     private String email;
     @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
-    private Event eventId;
+    private Event event;
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 

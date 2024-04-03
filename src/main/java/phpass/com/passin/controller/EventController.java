@@ -5,13 +5,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import phpass.com.passin.domain.event.Event;
+import phpass.com.passin.dto.attendee.AttendeesListResponseDTO;
 import phpass.com.passin.dto.event.EventIdDTO;
 import phpass.com.passin.dto.event.EventRequestDTO;
 import phpass.com.passin.dto.event.EventResponseDTO;
+import phpass.com.passin.service.AttendeeService;
 import phpass.com.passin.service.EventService;
 
-import java.net.URI;
 
 @RestController
 @RequestMapping("events")
@@ -19,6 +19,7 @@ import java.net.URI;
 public class EventController {
 
     private final EventService eventService;
+    private final AttendeeService attendeeService;
 
     @GetMapping
     public ResponseEntity<String> status() {
@@ -40,4 +41,9 @@ public class EventController {
         return ResponseEntity.created(uriComponents).body(eventIdDTO);
     }
 
+    @GetMapping(value = "/attendees/{id}")
+    public ResponseEntity<AttendeesListResponseDTO> getEventsAttendee(@PathVariable String id) {
+        AttendeesListResponseDTO attendeesListResponseDTO = this.attendeeService.getEventsAttendee(id);
+        return ResponseEntity.ok().body(attendeesListResponseDTO);
+    }
 }

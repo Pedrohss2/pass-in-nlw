@@ -7,6 +7,7 @@ import phpass.com.passin.domain.event.Event;
 import java.util.List;
 
 public interface AttendeeRepository extends JpaRepository<Attendee, String> {
+    List<Attendee> findByEventId(String eventId);
 
-    List<Attendee> findByEventId(Event eventId);
+
 }

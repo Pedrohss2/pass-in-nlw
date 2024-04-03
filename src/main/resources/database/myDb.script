@@ -1,4 +1,4 @@
-SET DATABASE UNIQUE NAME HSQLDB8EA06CE047
+SET DATABASE UNIQUE NAME HSQLDB8EA55F2FF2
 SET DATABASE DEFAULT RESULT MEMORY ROWS 0
 SET DATABASE EVENT LOG LEVEL 0
 SET DATABASE TRANSACTION CONTROL LOCKS
@@ -29,7 +29,7 @@ SET FILES NIO TRUE
 SET FILES NIO SIZE 256
 SET FILES LOG TRUE
 SET FILES LOG SIZE 50
-SET FILES CHECK 4577
+SET FILES CHECK 447
 SET DATABASE COLLATION "SQL_TEXT" PAD SPACE
 CREATE USER SA PASSWORD DIGEST 'd41d8cd98f00b204e9800998ecf8427e'
 ALTER USER SA SET LOCAL TRUE
@@ -54,8 +54,9 @@ GRANT DBA TO SA
 SET SCHEMA SYSTEM_LOBS
 INSERT INTO BLOCKS VALUES(0,2147483647,0)
 SET SCHEMA PUBLIC
-INSERT INTO "flyway_schema_history" VALUES(1,'1','create-table-events','SQL','V1__create-table-events.sql',-1900471893,'SA','2024-04-02 17:07:54.008518',3,'1')
-INSERT INTO "flyway_schema_history" VALUES(2,'2','create-table-attendees','SQL','V2__create-table-attendees.sql',1125810952,'SA','2024-04-02 17:07:54.030514',1,'1')
-INSERT INTO "flyway_schema_history" VALUES(3,'3','create-table-checkIns','SQL','V3__create-table-checkIns.sql',-378327417,'SA','2024-04-02 17:07:54.043512',3,'1')
-INSERT INTO "flyway_schema_history" VALUES(4,'4','create-indexes','SQL','V4__create-indexes.sql',539099062,'SA','2024-04-02 17:07:54.056512',1,'1')
-INSERT INTO EVENTS VALUES('cea02b1a-afda-4228-83e6-37189b89478a','gym event','Make friends at the gym event and be happy','gym-event',500)
+INSERT INTO "flyway_schema_history" VALUES(1,'1','create-table-events','SQL','V1__create-table-events.sql',-1900471893,'SA','2024-04-03 16:11:02.927088',2,'1')
+INSERT INTO "flyway_schema_history" VALUES(2,'2','create-table-attendees','SQL','V2__create-table-attendees.sql',1125810952,'SA','2024-04-03 16:11:02.941090',1,'1')
+INSERT INTO "flyway_schema_history" VALUES(3,'3','create-table-checkIns','SQL','V3__create-table-checkIns.sql',-378327417,'SA','2024-04-03 16:11:02.952086',3,'1')
+INSERT INTO "flyway_schema_history" VALUES(4,'4','create-indexes','SQL','V4__create-indexes.sql',539099062,'SA','2024-04-03 16:11:02.963088',1,'1')
+INSERT INTO EVENTS VALUES('f4088f07-38f3-4d22-8b8e-722cae5061c7','Gym event','Make friends at the gym event and be happy','gym-event',500)
+INSERT INTO ATTENDEES VALUES('f4088f07-38f3-4d22-8b8e-722cae506156','Pedro Henrique','pedro2266809ph@gmail.com','f4088f07-38f3-4d22-8b8e-722cae5061c7',NULL)
