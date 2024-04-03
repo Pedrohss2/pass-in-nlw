@@ -6,13 +6,13 @@ import phpass.com.passin.domain.attendee.Attendee;
 import phpass.com.passin.domain.checkin.CheckIn;
 import phpass.com.passin.dto.attendee.AttendeeDetails;
 import phpass.com.passin.dto.attendee.AttendeesListResponseDTO;
+import phpass.com.passin.dto.attendee.exceptions.AttendeeAlreadyRegisteredException;
 import phpass.com.passin.repository.AttendeeRepository;
 import phpass.com.passin.repository.CheckInRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -37,4 +37,16 @@ public class AttendeeService {
 
         return new AttendeesListResponseDTO(attendeeDetails);
     }
+
+    public Attendee registerAttendee(Attendee attendee) {
+        this.attendeeRepository.save(attendee);
+        return attendee;
+    }
+
+    public void verifyAttendeeSubscription(String eventId, String email) {
+        Optional<Attendee> attendeeRegistered = this.attendeeRepository.findByEventIdAndEmail(eventId, email);
+
+        if(attendeeRegistered.isPresent()) throw new AttendeeAlreadyRegisteredException("Attendee is already registry");
+    }
+
 }
