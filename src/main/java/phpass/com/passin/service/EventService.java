@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import phpass.com.passin.domain.attendee.Attendee;
 import phpass.com.passin.domain.event.Event;
+import phpass.com.passin.domain.event.exceptions.EventNotFoundException;
 import phpass.com.passin.dto.event.EventIdDTO;
 import phpass.com.passin.dto.event.EventRequestDTO;
 import phpass.com.passin.dto.event.EventResponseDTO;
@@ -17,13 +18,14 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class EventService {
+
     private final EventRepository eventRepository;
     private final AttendeeRepository attendeeRepository;
 
     @Transactional(readOnly = true)
     public EventResponseDTO getEventDetails(String id) {
         Event eventId = this.eventRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Event not found with id: " + id)
+                () -> new EventNotFoundException("Event not found with id: " + id)
         );
         List<Attendee> attendees = this.attendeeRepository.findByEventId(eventId);
         return new EventResponseDTO(eventId, attendees.size());
