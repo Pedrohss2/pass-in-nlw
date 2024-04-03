@@ -28,9 +28,7 @@ public class EventService {
 
     @Transactional(readOnly = true)
     public EventResponseDTO getEventDetails(String eventId) {
-        Event event = this.eventRepository.findById(eventId).orElseThrow(
-                () -> new EventNotFoundException("Event not found with id: " + eventId)
-        );
+        Event event = this.getEventById(eventId);
         List<Attendee> attendees = this.attendeeService.getAllAttendeesFromEvent(eventId);
         return new EventResponseDTO(event, attendees.size());
     }
@@ -50,9 +48,7 @@ public class EventService {
     public AttendeeIdDTO registerAttendOnEvent(String eventId, AttendeeRequestDTO attendeeRequestDTO) {
         this.attendeeService.verifyAttendeeSubscription(eventId, attendeeRequestDTO.email());
 
-        Event event = this.eventRepository.findById(eventId).orElseThrow(
-                () -> new EventNotFoundException("Event not found with id: " + eventId)
-        );
+        Event event = this.getEventById(eventId);
         List<Attendee> attendees = this.attendeeService.getAllAttendeesFromEvent(eventId);
 
         if(event.getMaximumAttendees() <= attendees.size()) throw new EventFullException("Event is full, sorry");
@@ -67,6 +63,11 @@ public class EventService {
         return new AttendeeIdDTO(newAttendee.getId());
     }
 
+    public Event getEventById(String eventId) {
+        return this.eventRepository.findById(eventId).orElseThrow(
+                () -> new EventNotFoundException("Event not found with id: " + eventId)
+        );
+    }
 
     private String createSlug(String text) {
         String normalize = Normalizer.normalize(text, Normalizer.Form.NFD);
