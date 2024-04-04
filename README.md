@@ -47,9 +47,9 @@ Configuração do banco de dados:
 ## Esquema de tabelas usado no projeto:
 ![App Screenshot](Pass-in.png)
 
-## Instalação do prrojeto: 
-Clone o repositório: 'https://github.com/Pedrohss2/pass-in-nlw' para sua máquina local
-Instale as depêndencias citadas nas bibliotecas ultilizadas e inicio o projeto dentro da classe: 
+## Instalação do prrojeto:
+Clone o repositório: 'https://github.com/Pedrohss2/pass-in-nlw' para sua máquina local.
+Instale as depêndencias e inicie o projeto dentro da classe:
 ```
 @SpringBootApplication
 public class PassInApplication {
