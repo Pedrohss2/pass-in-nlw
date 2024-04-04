@@ -44,7 +44,7 @@ Configuração do banco de dados:
 			<version>2.7.1</version>
 		</dependency>
 ```
-## Esquema de tabels usado no projeto:
+## Esquema de tabelas usado no projeto:
 ![App Screenshot](Pass-in.png)
 
 ## Instalação do prrojeto: 
