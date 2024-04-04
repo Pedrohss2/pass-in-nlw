@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+import phpass.com.passin.dto.attendee.AttendeeIdDTO;
+import phpass.com.passin.dto.attendee.AttendeeRequestDTO;
 import phpass.com.passin.dto.attendee.AttendeesListResponseDTO;
 import phpass.com.passin.dto.event.EventIdDTO;
 import phpass.com.passin.dto.event.EventRequestDTO;
@@ -40,6 +42,16 @@ public class EventController {
 
         return ResponseEntity.created(uriComponents).body(eventIdDTO);
     }
+
+    @PostMapping("/{eventId}/attendees")
+    public ResponseEntity<AttendeeIdDTO> registerParticipant(@PathVariable String eventId, @RequestBody AttendeeRequestDTO attendeeRequestDTO, UriComponentsBuilder uri) {
+        AttendeeIdDTO attendeeIdDTO = this.eventService.registerAttendOnEvent(eventId, attendeeRequestDTO);
+
+        var uriComponents = uri.path("/attendees/{attendeeId}/badge").buildAndExpand(attendeeIdDTO.attendeeId()).toUri();
+
+        return ResponseEntity.created(uriComponents).body(attendeeIdDTO);
+    }
+
 
     @GetMapping(value = "/attendees/{id}")
     public ResponseEntity<AttendeesListResponseDTO> getEventsAttendee(@PathVariable String id) {

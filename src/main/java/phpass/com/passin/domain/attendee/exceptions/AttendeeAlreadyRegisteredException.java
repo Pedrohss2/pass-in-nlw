@@ -1,4 +1,4 @@
-package phpass.com.passin.dto.attendee.exceptions;
+package phpass.com.passin.domain.attendee.exceptions;
 
 public class AttendeeAlreadyRegisteredException extends RuntimeException {
 

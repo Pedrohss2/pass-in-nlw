@@ -2,11 +2,15 @@ package phpass.com.passin.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriComponentsBuilder;
 import phpass.com.passin.domain.attendee.Attendee;
+import phpass.com.passin.domain.attendee.exceptions.AttendeeNotFoundException;
 import phpass.com.passin.domain.checkin.CheckIn;
+import phpass.com.passin.dto.attendee.AttendeeBadgeResponseDTO;
 import phpass.com.passin.dto.attendee.AttendeeDetails;
 import phpass.com.passin.dto.attendee.AttendeesListResponseDTO;
-import phpass.com.passin.dto.attendee.exceptions.AttendeeAlreadyRegisteredException;
+import phpass.com.passin.domain.attendee.exceptions.AttendeeAlreadyRegisteredException;
+import phpass.com.passin.dto.attendee.AttendeeBadgeDTO;
 import phpass.com.passin.repository.AttendeeRepository;
 import phpass.com.passin.repository.CheckInRepository;
 
@@ -49,4 +53,13 @@ public class AttendeeService {
         if(attendeeRegistered.isPresent()) throw new AttendeeAlreadyRegisteredException("Attendee is already registry");
     }
 
+    public AttendeeBadgeResponseDTO getAttendeeBadge(String attendeeId, UriComponentsBuilder uriComponentsBuilder) {
+        Attendee attendee = this.attendeeRepository.findById(attendeeId).orElseThrow(() -> new AttendeeNotFoundException("Attendee not found with id: " + attendeeId));
+
+        var uriComponents = uriComponentsBuilder.path("/attendees/{attendeeId}/check-in").buildAndExpand(attendeeId).toUri().toString();
+
+        AttendeeBadgeDTO badgeDTO = new AttendeeBadgeDTO(attendee.getName(), attendee.getEmail(), uriComponents, attendee.getId());
+
+        return new AttendeeBadgeResponseDTO(badgeDTO);
+    }
 }
