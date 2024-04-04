@@ -44,9 +44,17 @@ Configuração do banco de dados:
 			<version>2.7.1</version>
 		</dependency>
 ```
+## Esquema de tabels usado no projeto:
+![App Screenshot](Pass-in.png)
 
-
-
-
-
-
+## Instalação do prrojeto: 
+Clone o repositório: 'https://github.com/Pedrohss2/pass-in-nlw' para sua máquina local
+Instale as depêndencias citadas nas bibliotecas ultilizadas e inicio o projeto dentro da classe: 
+```
+@SpringBootApplication
+public class PassInApplication {
+	public static void main(String[] args) {
+		SpringApplication.run(PassInApplication.class, args);
+	}
+}
+```
