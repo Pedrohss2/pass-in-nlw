@@ -22,6 +22,7 @@ O sistema fará um scan da credencial do participante para permitir a entrada no
   <li>Java</li>
   <li>Spring boot</li>
 </ul>
+
 # Bibliotecas Utilizadas:
 <ul>
   <li>Spring web</li>
