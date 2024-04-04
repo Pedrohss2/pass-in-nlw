@@ -7,7 +7,7 @@ Os participantes inscritos podem emitir uma credencial para check-in no dia do e
 O sistema fará um scan da credencial do participante para permitir a entrada no evento.
 </p>
 
-## Requisitos do projeto:
+# Requisitos do projeto:
 <ul>
   <li>O organizador deve poder cadastrar um novo evento</li>
   <li>O organizador deve poder visualizar dados de um evento</li>
@@ -30,7 +30,7 @@ O sistema fará um scan da credencial do participante para permitir a entrada no
   <li>JPA</li>
 </ul>
 
- ##Banco de dados Utilizado:
+ #Banco de dados Utilizado:
  <ul>
   <li>hsqldb</li>
 </ul>
